@@ -558,4 +558,4 @@ const testData = [
 ReactDOM.render(
     <DataTable headers={Object.keys(testData[0])} rows={testData.map(item => Object.values(item))}/>,
     document.getElementById("root")
-);
+)

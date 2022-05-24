@@ -1,5 +1,9 @@
+import { useState } from "react"
+import DataTableToolbar from "../DataTableToolbar";
 import DataTableHeader from "../DataTableHeader";
 import DataTableBody from "../DataTableBody";
+import DataTableFooter from "../DataTableFooter";
+import { usePagination } from "../../hooks/usePagination"
 import "../../style.scss";
 
 interface Props {
@@ -8,12 +12,20 @@ interface Props {
 };
 
 const DataTable: React.FC<Props> = (props): JSX.Element => {
+    const [currentPage, setCurrentPage] = useState<number>(1)
+    const [currentItemPerPage, setcurrentItemPerPage] = useState<number>(5)
+
+    const { numberOfPage, dataBatchPerPage } = usePagination(props.rows, currentPage, currentItemPerPage)
 
     return(
-        <table className="data-table">
-            <DataTableHeader content={props.headers} />
-            <DataTableBody content={props.rows} />
-        </table>
+        <>
+            <DataTableToolbar setItemPerPage={setcurrentItemPerPage}/>
+            <table className="data-table">
+                <DataTableHeader content={props.headers} />
+                <DataTableBody content={dataBatchPerPage} />
+            </table>
+            <DataTableFooter numberOfPage={numberOfPage} setPage={setCurrentPage}/>
+        </>
     );
 };
 

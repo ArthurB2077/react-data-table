@@ -8,7 +8,7 @@ const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
         <thead className="data-table-header">
             <tr className="data-table-row">
                 {
-                    props.content.map(item => <th className="data-table-header-cell" scope="col">{item}</th>)
+                    props.content.map((item, index) => <th className="data-table-header-cell" scope="col" key={`header-${index}`}>{item}</th>)
                 }
             </tr>
         </thead>

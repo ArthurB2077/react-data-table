@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from "react"
 
-const getPageRange: Function = (data: Array<string | number>, itemPerPage: number): Array<number> => {
+const getNumberOfPage: Function = (data: Array<string | number>, itemPerPage: number): Array<number> => {
     const numberOfPage: number = Math.ceil(data.length / itemPerPage)
     const pageRange: Array<number> = []
 
@@ -13,20 +14,20 @@ const getPageRange: Function = (data: Array<string | number>, itemPerPage: numbe
 
 const getItemPerPage: Function = (data: Array<string | number>, page: number, itemPerPage: number):  Array<string | number> => data.slice((page - 1) * itemPerPage, page * itemPerPage)
 
-const usePagination = (data: Array<string | number>, page: number, itemPerPage: number) => {
-    const [pageRange, setPageRange] = useState<Array<string | number>>([])
-    const [currentItemPerPage, setCurrentItemPerPage] = useState<Array<string | number>>([])
+export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number) => {
 
     useEffect(() => {
-        const range = getPageRange(data, itemPerPage)
-        setPageRange([...range])
-    
-        const currentItemPerPage = getItemPerPage(data, page, itemPerPage)
-        setCurrentItemPerPage([...currentItemPerPage])
+        console.log("page", page)
+        console.log("itemPerPage", itemPerPage)
 
-    }, [data, setPageRange, page, setCurrentItemPerPage])
+    }, [page, itemPerPage])
 
-    return { currentItemPerPage,  pageRange: pageRange}
+    console.log("data", data)
+    console.log("getNumberOfPage(data, itemPerPage)", getNumberOfPage(data, itemPerPage))
+    console.log("getItemPerPage(data, page, itemPerPage", getItemPerPage(data, page, itemPerPage))
+
+    return ({
+        numberOfPage: getNumberOfPage(data, itemPerPage),
+        dataBatchPerPage: getItemPerPage(data, page, itemPerPage)
+    })
 }
-
-export default usePagination
