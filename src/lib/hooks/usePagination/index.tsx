@@ -15,19 +15,26 @@ const getNumberOfPage: Function = (data: Array<string | number>, itemPerPage: nu
 const getItemPerPage: Function = (data: Array<string | number>, page: number, itemPerPage: number):  Array<string | number> => data.slice((page - 1) * itemPerPage, page * itemPerPage)
 
 export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number) => {
+    const [numberOfPage, setNumberOfPage] = useState<Array<string | number>>([])
+    const [dataBatchPerPage, setDataBatchPerPage] = useState<Array<string | number>>([])
 
     useEffect(() => {
-        console.log("page", page)
-        console.log("itemPerPage", itemPerPage)
+        const newNumberOfpage = getNumberOfPage(data, itemPerPage)
+        const newDataBatchPerPage = getItemPerPage(data, page, itemPerPage)
+        // console.log("page", page)
+        // console.log("newNumberOfpage", newNumberOfpage)
 
-    }, [page, itemPerPage])
+        setNumberOfPage([...newNumberOfpage])
+        setDataBatchPerPage([...newDataBatchPerPage])
 
-    console.log("data", data)
-    console.log("getNumberOfPage(data, itemPerPage)", getNumberOfPage(data, itemPerPage))
-    console.log("getItemPerPage(data, page, itemPerPage", getItemPerPage(data, page, itemPerPage))
+    }, [data, page, itemPerPage, setNumberOfPage, setDataBatchPerPage])
+
+    // console.log("data", data)
+    // console.log("getNumberOfPage(data, itemPerPage)", getNumberOfPage(data, itemPerPage))
+    // console.log("getItemPerPage(data, page, itemPerPage", getItemPerPage(data, page, itemPerPage))
 
     return ({
-        numberOfPage: getNumberOfPage(data, itemPerPage),
-        dataBatchPerPage: getItemPerPage(data, page, itemPerPage)
+        numberOfPage: numberOfPage,
+        dataBatchPerPage: dataBatchPerPage
     })
 }
