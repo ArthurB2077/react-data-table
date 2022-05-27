@@ -5,6 +5,7 @@ import DataTableBody from "../DataTableBody";
 import DataTableFooter from "../DataTableFooter";
 import { usePagination } from "../../hooks/usePagination"
 import "../../style.scss";
+import { reverse } from "dns";
 
 interface Props {
     headers: Array<string>,
@@ -29,22 +30,55 @@ const identifyDataType: Function = (data: string): string => {
     }
 }
 
-const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number): Array<Array<string>> =>  {
+const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number, order: string): Array<Array<string>> =>  {
     switch (identifyDataType(arrayToSort[0][filterByIndex])) {
         case "date":
-            const sortedArray = arrayToSort.sort((a: string[], b: string[]): number => {
+            const sortedDate = arrayToSort.sort((a: string[], b: string[]): number => {
                 const date1 = new Date(a[filterByIndex]).getTime()
                 const date2 = new Date(b[filterByIndex]).getTime()
                 
-                return date1 - date2;
+                if(order === "asc") {
+                    return date1 - date2;
+                } else {
+                    return date2 - date1;
+                }
             })
-            return(sortedArray)
+            return(sortedDate)
             break
         case "number":
-            return(arrayToSort)
+            const sortedNumber = arrayToSort.sort((a: string[], b: string[]): number => {
+                const number1 = parseInt(a[filterByIndex])
+                const number2 = parseInt(b[filterByIndex])
+                
+                if(order === "asc") {
+                    return number1 - number2;
+                } else {
+                    return number2 - number1;
+                }
+            })
+            return(sortedNumber)
             break
         case "string":
-            return(arrayToSort)
+            const sortedString = order === "asc" ? arrayToSort.sort((a, b) => {
+                if(a[filterByIndex] < b[filterByIndex]) {
+                    return -1
+                } else if (a[filterByIndex] > b[filterByIndex]) {
+                    return 1
+                } else {
+                    return 0
+                }
+            }) 
+            : 
+            arrayToSort.sort((a, b) => {
+                if(a[filterByIndex] > b[filterByIndex]) {
+                    return -1
+                } else if (a[filterByIndex] < b[filterByIndex]) {
+                    return 1
+                } else {
+                    return 0
+                }
+            }) 
+            return(sortedString)
             break
         default:
             return(arrayToSort)
@@ -58,7 +92,7 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
     const [dataFiltered, setDataFiltered] = useState<Array<Array<string>>>(props.rows)
     const { numberOfPage, dataBatchPerPage } = usePagination(dataFiltered, currentPage, currentItemPerPage)
 
-    console.log(sort(props.rows, 2))
+    console.log(sort(props.rows, 2, "desc"))
 
     return(
         <>
