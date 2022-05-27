@@ -14,9 +14,9 @@ const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
                     props.content.map((item, index) => {
                         return(
                             <>
-                                <th className="data-table-header-cell" scope="col" key={`header-${index}`}>
+                                <th id={`${index}`} className="data-table-header-cell" scope="col" key={`header-${index}`} onClick={(event) => console.log(event.currentTarget.id)}>
                                     {item}
-                                    <img src={ActiveSort} alt={"Sort"} style={{width: "15px", height: "15px"}}/>
+                                    <img src={ActiveSort} alt={"Sort"} style={{width: "15px", height: "15px", pointerEvents: "none"}}/>
                                 </th>
                             </>
                         )
