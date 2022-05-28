@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 html {
-    background-color: #1c1c1c;
+    background-color: #000000;
     color: #ffffff;
 }
 
@@ -9,25 +9,28 @@ html {
     margin: auto;
     border-spacing: 0;
     font-family: 'Roboto', sans-serif;
-    border: #ffffff 1px solid;
-    .data-table-header {
-        color:#bababa;
-        background-color: #1c1c1c;
-        .data-table-row {
-            padding: 0;
-            .data-table-header-cell {
-                padding: 15px;
+    background-color: #1c1c1c;
+    color: #ffffff;
+    table {
+        .data-table-header {
+            color:#bababa;
+            background-color: #000000;
+            .data-table-row {
+                padding: 0;
+                .data-table-header-cell {
+                    padding: 15px;
+                }
             }
         }
-    }
-
-    .data-table-body {
-        color: #ffffff;
-        background-color: #262626;
-        .data-table-row {
-            padding: 0;
-            .data-table-body-cell {
-                padding: 15px;
+    
+        .data-table-body {
+            color: #ffffff;
+            background-color: #262626;
+            .data-table-row {
+                padding: 0;
+                .data-table-body-cell {
+                    padding: 15px;
+                }
             }
         }
     }

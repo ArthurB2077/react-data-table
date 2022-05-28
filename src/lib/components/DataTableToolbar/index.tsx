@@ -15,9 +15,6 @@ const DataTableToolbar: React.FC<Props> = ({ setItemPerPage, setDataFiltered, se
 
     const onInputSeach: Function = (event: React.ChangeEvent<HTMLSelectElement>): void => {
         const newData = data.filter(row => row[indexToSearch].toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase()))
-        console.log("event.target.value", event.target.value)
-        console.log("newData", newData)
-        console.log("data", data)
         setDataFiltered(newData)
         setPage(1)
     }
