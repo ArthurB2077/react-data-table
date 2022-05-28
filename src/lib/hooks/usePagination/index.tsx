@@ -14,24 +14,100 @@ const getNumberOfPage: Function = (data: Array<string | number>, itemPerPage: nu
 
 const getItemPerPage: Function = (data: Array<string | number>, page: number, itemPerPage: number):  Array<string | number> => data.slice((page - 1) * itemPerPage, page * itemPerPage)
 
-export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number) => {
+const isDate: Function = (str: string): boolean => {
+    let noSpace = str.replace(/\s/g, '')
+    if( noSpace.length < 3) {
+      return false
+    }
+    return Date.parse(noSpace) > 0
+}
+
+const identifyDataType: Function = (data: string): string => {
+    if(isDate(data)) {
+        return "date"
+    } else if(!isNaN(parseInt(data))) {
+        return "number"
+    } else {
+        return "string"
+    }
+}
+
+const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number, order: string): Array<Array<string>> =>  {
+    if(arrayToSort.length > 0) {
+        switch (identifyDataType(arrayToSort[0][filterByIndex])) {
+            case "date":
+                const sortedDate = arrayToSort.sort((a: string[], b: string[]): number => {
+                    const date1 = new Date(a[filterByIndex]).getTime()
+                    const date2 = new Date(b[filterByIndex]).getTime()
+                    
+                    if(order === "asc") {
+                        return date1 - date2;
+                    } else {
+                        return date2 - date1;
+                    }
+                })
+                return(sortedDate)
+                break
+            case "number":
+                const sortedNumber = arrayToSort.sort((a: string[], b: string[]): number => {
+                    const number1 = parseInt(a[filterByIndex])
+                    const number2 = parseInt(b[filterByIndex])
+                    
+                    if(order === "asc") {
+                        return number1 - number2;
+                    } else {
+                        return number2 - number1;
+                    }
+                })
+                return(sortedNumber)
+                break
+            case "string":
+                // console.log("order", order)
+                // console.log("filterByIndex", filterByIndex)
+                const sortedString = order === "asc" ? arrayToSort.sort((a, b) => {
+                    if(a[filterByIndex] < b[filterByIndex]) {
+                        return -1
+                    } else if (a[filterByIndex] > b[filterByIndex]) {
+                        return 1
+                    } else {
+                        return 0
+                    }
+                }) 
+                : 
+                arrayToSort.sort((a, b) => {
+                    if(a[filterByIndex] > b[filterByIndex]) {
+                        return -1
+                    } else if (a[filterByIndex] < b[filterByIndex]) {
+                        return 1
+                    } else {
+                        return 0
+                    }
+                })
+                // console.log("sortedString", sortedString)
+                return(sortedString)
+                break
+            default:
+                return(arrayToSort)
+                    
+        }
+    } else {
+        return arrayToSort
+    }
+}
+
+export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number, sortData: any) => {
     const [numberOfPage, setNumberOfPage] = useState<Array<string | number>>([])
     const [dataBatchPerPage, setDataBatchPerPage] = useState<Array<string | number>>([])
 
     useEffect(() => {
-        const newNumberOfpage = getNumberOfPage(data, itemPerPage)
-        const newDataBatchPerPage = getItemPerPage(data, page, itemPerPage)
-        // console.log("page", page)
-        // console.log("newNumberOfpage", newNumberOfpage)
+        const sortedData = sort(data, sortData.index, sortData.order)
+        const newNumberOfpage = getNumberOfPage(sortedData, itemPerPage)
+        const newDataBatchPerPage = getItemPerPage(sortedData, page, itemPerPage)
 
         setNumberOfPage([...newNumberOfpage])
         setDataBatchPerPage([...newDataBatchPerPage])
 
-    }, [data, page, itemPerPage, setNumberOfPage, setDataBatchPerPage])
-
-    // console.log("data", data)
-    // console.log("getNumberOfPage(data, itemPerPage)", getNumberOfPage(data, itemPerPage))
-    // console.log("getItemPerPage(data, page, itemPerPage", getItemPerPage(data, page, itemPerPage))
+    }, [data, page, itemPerPage, setNumberOfPage, setDataBatchPerPage, sortData.index, sortData.order])
 
     return ({
         numberOfPage: numberOfPage,
