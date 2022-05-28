@@ -7,13 +7,13 @@ const DataTableBody: React.FC<Props> = (props): JSX.Element => {
     return(
         <tbody className="data-table-body">
                 {
-                    props.content.map(item => {
+                    props.content.map((item, index) => {
                         return(
-                            <tr className="data-table-row">
+                            <tr key={`row-${index}`} className="data-table-row">
                                 {
-                                    item.map(itemChild => {
+                                    item.map((itemChild, indexChild) => {
                                         return(
-                                            <td className="data-table-body-cell">{itemChild}</td>
+                                            <td key={`cell-${indexChild}`} className="data-table-body-cell">{itemChild}</td>
                                         )
                                     })
                                 }

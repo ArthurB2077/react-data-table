@@ -1,33 +1,17 @@
-import React, { useEffect } from "react"
-import { JsxEmit } from "typescript"
+import React from "react"
 
 interface Props {
-    pageRange: Array<string | number>, 
-    setPage: Function, 
-    page: any, 
-    itemPerPage: any
+    numberOfPage: Array<number>,
+    setPage: Function
 }
 
-const DataTableFooter: React.FC<Props> = ({ pageRange, setPage, page, itemPerPage }): JSX.Element => {
-    useEffect(() => {
-        if(itemPerPage.length < 1 && page !== 1) {
-            setPage(page -1)
-        }
-    }, [itemPerPage, page, setPage])
+const DataTableFooter: React.FC<Props> = ({ numberOfPage, setPage }): JSX.Element => {
 
     return(
         <div>
-            {pageRange.map((el, index) => (
-                <button
-                    key={index}
-                    // className={`${styles.button} ${
-                    // page === el ? styles.activeButton : styles.inactiveButton
-                    // }`}
-                    onClick={() => setPage(el)}
-                >
-                    {el}
-                </button>
-            ))}
+            {numberOfPage.map((page, index) => {
+                return (<button key={`page-${index}`} onClick={ () => setPage(page) }>{page}</button>)
+            })}
         </div>
     )
 }
