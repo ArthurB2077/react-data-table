@@ -1,3 +1,6 @@
+import React from "react"
+import DataTableBodyCell from "../DataTableBodyCell"
+
 interface Props {
     content: Array<Array<string>>
 };
@@ -13,7 +16,7 @@ const DataTableBody: React.FC<Props> = (props): JSX.Element => {
                                 {
                                     item.map((itemChild, indexChild) => {
                                         return(
-                                            <td key={`cell-${indexChild}`} className="data-table-body-cell">{itemChild}</td>
+                                            <DataTableBodyCell key={`cell-${indexChild}`} contentOfCell={itemChild} indexOfCell={indexChild} />
                                         )
                                     })
                                 }

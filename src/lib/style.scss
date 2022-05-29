@@ -3,6 +3,7 @@
 html {
     background-color: #000000;
     color: #ffffff;
+    overflow: hidden
 }
 
 .data-table {
@@ -22,7 +23,7 @@ html {
             color: #ffffff;
             border: none;
             border-radius: 12px;
-            padding: 10px;
+            padding: 10px 5px;
             font-size: 12px;
         }
         .data-table-toolbar-input {
@@ -44,18 +45,29 @@ html {
         .data-table-header {
             color:#bababa;
             background-color: #1c1c1c;
+            font-size: 14px;
             .data-table-row {
                 padding: 0;
                 .data-table-header-cell {
                     padding: 15px;
+                    .data-table-header-cell-content {
+                        margin: auto;
+                        display: flex;
+                        align-items: center;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        .data-table-header-cell-text {
+                            margin-right: 5px;
+                        }
+                    }
                 }
             }
         }
-    
         .data-table-body {
             color: #ffffff;
             background-color: #262626;
-            font-size: 14px;
+            font-size: 14px;            
             .data-table-row {
                 padding: 0;
                 .data-table-body-cell {
@@ -84,7 +96,7 @@ html {
             background-color: #1c1c1c;
             color: #ffffff;
             border: none;
-            padding: 10px;
+            padding: 10px 5px;
             font-size: 12px;
             border-radius: 12px;
             margin-right: 5px;   
