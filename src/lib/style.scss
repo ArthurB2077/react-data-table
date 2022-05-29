@@ -3,35 +3,103 @@
 html {
     background-color: #000000;
     color: #ffffff;
+    overflow: hidden
 }
 
 .data-table {
     margin: auto;
     border-spacing: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: #1c1c1c;
+    background-color: transparent;
     color: #ffffff;
+    width: fit-content;
+    .data-table-toolbar {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        .data-table-toolbar-select {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 5px;
+            font-size: 12px;
+        }
+        .data-table-toolbar-input {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            font-size: 12px;
+            border-radius: 12px;
+            input {
+                border: none;
+                border-radius: 2px;
+                padding: 2px;
+                font-size: 12px;
+            }
+        }
+    }
     table {
         .data-table-header {
             color:#bababa;
-            background-color: #000000;
+            background-color: #1c1c1c;
+            font-size: 14px;
             .data-table-row {
                 padding: 0;
                 .data-table-header-cell {
                     padding: 15px;
+                    .data-table-header-cell-content {
+                        margin: auto;
+                        display: flex;
+                        align-items: center;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        .data-table-header-cell-text {
+                            margin-right: 5px;
+                        }
+                    }
                 }
             }
         }
-    
         .data-table-body {
             color: #ffffff;
             background-color: #262626;
+            font-size: 14px;            
             .data-table-row {
                 padding: 0;
                 .data-table-body-cell {
                     padding: 15px;
                 }
             }
+        }
+    }
+    .data-table-footer {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        button {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 12px;
+            margin-right: 5px;
+            &:hover {
+                cursor: pointer;
+                opacity: 0.8;
+            }
+        }
+        select {
+            background-color: #1c1c1c;
+            color: #ffffff;
+            border: none;
+            padding: 10px 5px;
+            font-size: 12px;
+            border-radius: 12px;
+            margin-right: 5px;   
         }
     }
 }

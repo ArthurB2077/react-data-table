@@ -20,17 +20,19 @@ const DataTableToolbar: React.FC<Props> = ({ setItemPerPage, setDataFiltered, se
     }
 
     return(
-        <>
-            <select onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChangeItemPerPage(event)}>
+        <div className="data-table-toolbar">
+            <select className="data-table-toolbar-select" onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChangeItemPerPage(event)}>
                 <option>5</option>
                 <option>10</option>
                 <option>25</option>
                 <option>50</option>
                 <option>100</option>
             </select>
-            <label>Recherche: </label>
-            <input onInput={(event) => onInputSeach(event)}/>
-        </>
+            <div className="data-table-toolbar-input">
+                <label>Search: </label>
+                <input onInput={(event) => onInputSeach(event)}/>
+            </div>
+        </div>
     )
 }
 

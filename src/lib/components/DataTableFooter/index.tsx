@@ -9,7 +9,7 @@ interface Props {
 const DataTableFooter: React.FC<Props> = ({ numberOfPage, setPage, currentPage }): JSX.Element => {
 
     return(
-        <div>
+        <div className="data-table-footer">
             <button onClick={() => setPage(numberOfPage[0])}>First</button>
             <button onClick={() => {
                 if(currentPage !== numberOfPage[0]) {
