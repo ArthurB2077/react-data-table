@@ -3,7 +3,6 @@
 html {
     background-color: #000000;
     color: #ffffff;
-    overflow: hidden
 }
 
 .data-table {
@@ -42,6 +41,9 @@ html {
         }
     }
     table {
+        @media screen and (max-width: 600px) {
+            width: 100%;
+        }
         .data-table-header {
             color:#bababa;
             background-color: #1c1c1c;
@@ -50,6 +52,9 @@ html {
                 padding: 0;
                 .data-table-header-cell {
                     padding: 15px;
+                    @media screen and (max-width: 600px) {
+                        display: flex;
+                    }
                     .data-table-header-cell-content {
                         margin: auto;
                         display: flex;
@@ -72,6 +77,14 @@ html {
                 padding: 0;
                 .data-table-body-cell {
                     padding: 15px;
+                    @media screen and (max-width: 600px) {
+                        display: flex;
+                    }
+                }
+                .data-table-body-cell-first {
+                    @media screen and (max-width: 600px) {
+                        background-color: #000000;
+                    }
                 }
             }
         }
