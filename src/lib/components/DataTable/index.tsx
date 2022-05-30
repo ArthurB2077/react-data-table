@@ -48,6 +48,7 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
                         dataOrder={dataSorted}
                         setSelectedColumnIndex={setSelectedColumnIndex}
                         selectedColumnIndex={selectedColumnIndex}
+                        theme={props.theme}
                     />
                     <DataTableBody 
                         content={dataBatchPerPage}

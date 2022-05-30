@@ -6,7 +6,8 @@ interface Props {
     changeSortOrder: Function,
     setSelectedColumnIndex: Function,
     dataOrder: any,
-    selectedColumnIndex: number
+    selectedColumnIndex: number,
+    theme: "light" | "dark",
 };
 
 const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
@@ -22,7 +23,15 @@ const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
                 {
                     props.content.map((item, index) => {
                         return(
-                            <DataTableHeaderCell key={`${item}-${index}`} indexOfTheCell={index} contentOfTheCell={item} changeSortOrder={setSortedData} setSelectedColumnIndex={props.setSelectedColumnIndex} selectedColumnIndex={props.selectedColumnIndex}/>
+                            <DataTableHeaderCell 
+                                key={`${item}-${index}`} 
+                                indexOfTheCell={index} 
+                                contentOfTheCell={item} 
+                                changeSortOrder={setSortedData} 
+                                setSelectedColumnIndex={props.setSelectedColumnIndex} 
+                                selectedColumnIndex={props.selectedColumnIndex}
+                                theme={props.theme}
+                            />
                         )
                     })
                 }
