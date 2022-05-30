@@ -8,7 +8,10 @@ import "../../style.scss"
 
 interface Props {
     headers: Array<string>,
-    rows: Array<Array<string>>
+    rows: Array<Array<string>>,
+    itemPerPageRanges: Array<number>,
+    searchLabel: string,
+    className?: string,
 }
 
 interface SortData {
@@ -26,15 +29,36 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
     const { numberOfPage, dataBatchPerPage } = usePagination(dataFiltered, currentPage, currentItemPerPage, dataSorted)
 
     return(
-        <div className="data-table">
-            <DataTableToolbar setItemPerPage={setcurrentItemPerPage} setPage={setCurrentPage} setDataFiltered={setDataFiltered} data={props.rows} indexToSearch={dataSorted.index}/>
+        <div className={`${props.className ? `${props.className} data-table` : "data-table"}`}>
+            <DataTableToolbar 
+                setItemPerPage={setcurrentItemPerPage}
+                setPage={setCurrentPage}
+                setDataFiltered={setDataFiltered}
+                data={props.rows}
+                indexToSearch={dataSorted.index}
+                itemPerPageRanges={props.itemPerPageRanges}
+                searchLabel={props.searchLabel}
+            />
             <div className="data-table-conatiner">
                 <table>
-                    <DataTableHeader content={props.headers} changeSortOrder={setDataSorted} dataOrder={dataSorted} setSelectedColumnIndex={setSelectedColumnIndex} selectedColumnIndex={selectedColumnIndex}/>
-                    <DataTableBody content={dataBatchPerPage} selectedColumnIndex={selectedColumnIndex}/>
+                    <DataTableHeader 
+                        content={props.headers}
+                        changeSortOrder={setDataSorted}
+                        dataOrder={dataSorted}
+                        setSelectedColumnIndex={setSelectedColumnIndex}
+                        selectedColumnIndex={selectedColumnIndex}
+                    />
+                    <DataTableBody 
+                        content={dataBatchPerPage}
+                        selectedColumnIndex={selectedColumnIndex}
+                    />
                 </table>
             </div>
-            <DataTableFooter numberOfPage={numberOfPage} setPage={setCurrentPage} currentPage={currentPage}/>
+            <DataTableFooter
+                numberOfPage={numberOfPage}
+                setPage={setCurrentPage}
+                currentPage={currentPage}
+            />
         </div>
     )
 }
