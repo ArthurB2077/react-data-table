@@ -556,9 +556,11 @@ const testData = [
 ]
 
 ReactDOM.render(
-    <DataTable 
-        headers={Object.keys(testData[0])} 
-        rows={testData.map(item => Object.values(item))}
-    />,
+    <div style={{width: "80vw", margin: "auto"}}>
+        <DataTable 
+            headers={Object.keys(testData[0])} 
+            rows={testData.map(item => Object.values(item))}
+        />
+    </div>,
     document.getElementById("root")
 )
