@@ -2,7 +2,8 @@ import React from "react"
 import DataTableBodyCell from "../DataTableBodyCell"
 
 interface Props {
-    content: Array<Array<string>>
+    content: Array<Array<string>>,
+    selectedColumnIndex: number,
 };
 
 const DataTableBody: React.FC<Props> = (props): JSX.Element => {
@@ -16,7 +17,7 @@ const DataTableBody: React.FC<Props> = (props): JSX.Element => {
                                 {
                                     item.map((itemChild, indexChild) => {
                                         return(
-                                            <DataTableBodyCell key={`cell-${indexChild}`} contentOfCell={itemChild} indexOfCell={indexChild} />
+                                            <DataTableBodyCell key={`cell-${indexChild}`} contentOfCell={itemChild} indexOfCell={indexChild} selectedColumnIndex={props.selectedColumnIndex}/>
                                         )
                                     })
                                 }

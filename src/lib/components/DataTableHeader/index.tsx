@@ -4,7 +4,9 @@ import DataTableHeaderCell from "../DataTableHeaderCell"
 interface Props {
     content: Array<string>,
     changeSortOrder: Function,
+    setSelectedColumnIndex: Function,
     dataOrder: any,
+    selectedColumnIndex: number
 };
 
 const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
@@ -20,7 +22,7 @@ const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
                 {
                     props.content.map((item, index) => {
                         return(
-                            <DataTableHeaderCell key={`${item}-${index}`} indexOfTheCell={index} contentOfTheCell={item} changeSortOrder={setSortedData}/>
+                            <DataTableHeaderCell key={`${item}-${index}`} indexOfTheCell={index} contentOfTheCell={item} changeSortOrder={setSortedData} setSelectedColumnIndex={props.setSelectedColumnIndex} selectedColumnIndex={props.selectedColumnIndex}/>
                         )
                     })
                 }

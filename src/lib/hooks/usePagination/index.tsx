@@ -62,12 +62,10 @@ const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number
                 return(sortedNumber)
                 break
             case "string":
-                // console.log("order", order)
-                // console.log("filterByIndex", filterByIndex)
                 const sortedString = order === "asc" ? arrayToSort.sort((a, b) => {
-                    if(a[filterByIndex] < b[filterByIndex]) {
+                    if(a[filterByIndex].toLocaleLowerCase() < b[filterByIndex].toLocaleLowerCase()) {
                         return -1
-                    } else if (a[filterByIndex] > b[filterByIndex]) {
+                    } else if (a[filterByIndex].toLocaleLowerCase() > b[filterByIndex].toLocaleLowerCase()) {
                         return 1
                     } else {
                         return 0
@@ -75,15 +73,14 @@ const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number
                 }) 
                 : 
                 arrayToSort.sort((a, b) => {
-                    if(a[filterByIndex] > b[filterByIndex]) {
+                    if(a[filterByIndex].toLocaleLowerCase() > b[filterByIndex].toLocaleLowerCase()) {
                         return -1
-                    } else if (a[filterByIndex] < b[filterByIndex]) {
+                    } else if (a[filterByIndex].toLocaleLowerCase() < b[filterByIndex].toLocaleLowerCase()) {
                         return 1
                     } else {
                         return 0
                     }
                 })
-                // console.log("sortedString", sortedString)
                 return(sortedString)
                 break
             default:
