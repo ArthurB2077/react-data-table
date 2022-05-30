@@ -69,6 +69,21 @@ html {
                             }
                         }
                     }
+                    .data-table-header-cell__selected {
+                        padding: 15px;
+                        background-color: rgb(186, 186, 186, 0.1);
+                        .data-table-header-cell-content {
+                            margin: auto;
+                            display: flex;
+                            align-items: center;
+                            &:hover {
+                                cursor: pointer;
+                            }
+                            .data-table-header-cell-text {
+                                margin-right: 5px;
+                            }
+                        }
+                    }
                 }
             }
             .data-table-body {
@@ -79,6 +94,10 @@ html {
                     padding: 0;
                     .data-table-body-cell {
                         padding: 15px;
+                    }
+                    .data-table-body-cell__selected {
+                        padding: 15px;
+                        background-color: rgb(186, 186, 186, 0.2);
                     }
                 }
             }

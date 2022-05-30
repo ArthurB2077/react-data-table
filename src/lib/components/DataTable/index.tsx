@@ -21,6 +21,7 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
     const [currentItemPerPage, setcurrentItemPerPage] = useState<number>(5)
     const [dataFiltered, setDataFiltered] = useState<Array<Array<string>>>(props.rows)
     const [dataSorted, setDataSorted] = useState<SortData>({ index: 0, order: "asc" })
+    const [selectedColumnIndex, setSelectedColumnIndex] = useState<number>(0)
     
     const { numberOfPage, dataBatchPerPage } = usePagination(dataFiltered, currentPage, currentItemPerPage, dataSorted)
 
@@ -29,8 +30,8 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
             <DataTableToolbar setItemPerPage={setcurrentItemPerPage} setPage={setCurrentPage} setDataFiltered={setDataFiltered} data={props.rows} indexToSearch={dataSorted.index}/>
             <div className="data-table-conatiner">
                 <table>
-                    <DataTableHeader content={props.headers} changeSortOrder={setDataSorted} dataOrder={dataSorted}/>
-                    <DataTableBody content={dataBatchPerPage} />
+                    <DataTableHeader content={props.headers} changeSortOrder={setDataSorted} dataOrder={dataSorted} setSelectedColumnIndex={setSelectedColumnIndex} selectedColumnIndex={selectedColumnIndex}/>
+                    <DataTableBody content={dataBatchPerPage} selectedColumnIndex={selectedColumnIndex}/>
                 </table>
             </div>
             <DataTableFooter numberOfPage={numberOfPage} setPage={setCurrentPage} currentPage={currentPage}/>
