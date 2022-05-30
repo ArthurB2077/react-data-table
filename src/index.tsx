@@ -560,6 +560,9 @@ ReactDOM.render(
         <DataTable 
             headers={Object.keys(testData[0])} 
             rows={testData.map(item => Object.values(item))}
+            itemPerPageRanges={[5, 10, 20, 50, 100]}
+            searchLabel="Search : "
+            className=""
         />
     </div>,
     document.getElementById("root")

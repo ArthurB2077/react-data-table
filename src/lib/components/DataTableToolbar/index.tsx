@@ -4,9 +4,11 @@ interface Props {
     setPage: Function,
     data: Array<Array<string>>,
     indexToSearch: number,
+    itemPerPageRanges: Array<number>,
+    searchLabel: string,
 }
 
-const DataTableToolbar: React.FC<Props> = ({ setItemPerPage, setDataFiltered, setPage, data, indexToSearch }): JSX.Element => {
+const DataTableToolbar: React.FC<Props> = ({ setItemPerPage, setDataFiltered, setPage, data, indexToSearch, itemPerPageRanges, searchLabel }): JSX.Element => {
 
     const onChangeItemPerPage: Function = (event: React.ChangeEvent<HTMLSelectElement>): void => {
         setItemPerPage(event.target.value)
@@ -22,14 +24,14 @@ const DataTableToolbar: React.FC<Props> = ({ setItemPerPage, setDataFiltered, se
     return(
         <div className="data-table-toolbar">
             <select className="data-table-toolbar-select" onChange={(event: React.ChangeEvent<HTMLSelectElement>) => onChangeItemPerPage(event)}>
-                <option>5</option>
-                <option>10</option>
-                <option>25</option>
-                <option>50</option>
-                <option>100</option>
+                {itemPerPageRanges.map((itemPerPage: number, index: number) => {
+                    return(
+                        <option key={index} value={itemPerPage}>{itemPerPage}</option>
+                    )
+                })}
             </select>
             <div className="data-table-toolbar-input">
-                <label>Search: </label>
+                <label>{searchLabel}</label>
                 <input onInput={(event) => onInputSeach(event)}/>
             </div>
         </div>
