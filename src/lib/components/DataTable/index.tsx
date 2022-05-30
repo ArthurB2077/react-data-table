@@ -12,6 +12,7 @@ interface Props {
     itemPerPageRanges: Array<number>,
     searchLabel: string,
     className?: string,
+    theme: "light" | "dark",
 }
 
 interface SortData {
@@ -29,7 +30,7 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
     const { numberOfPage, dataBatchPerPage } = usePagination(dataFiltered, currentPage, currentItemPerPage, dataSorted)
 
     return(
-        <div className={`${props.className ? `${props.className} data-table` : "data-table"}`}>
+        <div className={`${props.className ? `${props.className} ${props.theme === "dark" ? "data-table" : "data-table__light"}` : `${props.theme === "dark" ? "data-table" : "data-table__light"}`}`}>
             <DataTableToolbar 
                 setItemPerPage={setcurrentItemPerPage}
                 setPage={setCurrentPage}

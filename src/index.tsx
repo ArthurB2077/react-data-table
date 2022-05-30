@@ -563,6 +563,7 @@ ReactDOM.render(
             itemPerPageRanges={[5, 10, 20, 50, 100]}
             searchLabel="Search : "
             className=""
+            theme="dark"
         />
     </div>,
     document.getElementById("root")
