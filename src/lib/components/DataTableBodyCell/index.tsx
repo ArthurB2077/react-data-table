@@ -8,7 +8,7 @@ interface Props  {
 const DataTableBodyCell: React.FC<Props> = ({ indexOfCell, contentOfCell }): JSX.Element => {
 
     return(
-        <td className="data-table-body-cell">{contentOfCell}</td>
+        <td className={`data-table-body-cell ${indexOfCell === 0 ? "data-table-body-cell-first" : ""}`}>{contentOfCell}</td>
     )
 }
 

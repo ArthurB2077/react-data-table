@@ -3,7 +3,6 @@
 html {
     background-color: #000000;
     color: #ffffff;
-    overflow: hidden
 }
 
 .data-table {
@@ -13,6 +12,7 @@ html {
     background-color: transparent;
     color: #ffffff;
     width: fit-content;
+    width: 100%;
     .data-table-toolbar {
         display: flex;
         justify-content: space-between;
@@ -41,37 +41,45 @@ html {
             }
         }
     }
-    table {
-        .data-table-header {
-            color:#bababa;
-            background-color: #1c1c1c;
-            font-size: 14px;
-            .data-table-row {
-                padding: 0;
-                .data-table-header-cell {
-                    padding: 15px;
-                    .data-table-header-cell-content {
-                        margin: auto;
-                        display: flex;
-                        align-items: center;
-                        &:hover {
-                            cursor: pointer;
-                        }
-                        .data-table-header-cell-text {
-                            margin-right: 5px;
+    .data-table-conatiner {
+        overflow-x: auto;
+        table {
+            border-spacing: 0;
+            border-color: #000000;
+            border-collapse: collapse;
+            margin: auto;
+            width: 100%;
+            .data-table-header {
+                color:#bababa;
+                background-color: #1c1c1c;
+                font-size: 14px;
+                .data-table-row {
+                    padding: 0;
+                    .data-table-header-cell {
+                        padding: 15px;
+                        .data-table-header-cell-content {
+                            margin: auto;
+                            display: flex;
+                            align-items: center;
+                            &:hover {
+                                cursor: pointer;
+                            }
+                            .data-table-header-cell-text {
+                                margin-right: 5px;
+                            }
                         }
                     }
                 }
             }
-        }
-        .data-table-body {
-            color: #ffffff;
-            background-color: #262626;
-            font-size: 14px;            
-            .data-table-row {
-                padding: 0;
-                .data-table-body-cell {
-                    padding: 15px;
+            .data-table-body {
+                color: #ffffff;
+                background-color: #262626;
+                font-size: 14px;            
+                .data-table-row {
+                    padding: 0;
+                    .data-table-body-cell {
+                        padding: 15px;
+                    }
                 }
             }
         }
@@ -102,4 +110,27 @@ html {
             margin-right: 5px;   
         }
     }
+}
+
+/* Designing for scroll-bar */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: gainsboro;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1c1c1c;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
