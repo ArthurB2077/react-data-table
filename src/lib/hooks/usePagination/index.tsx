@@ -1,6 +1,11 @@
 
 import { useState, useEffect } from "react"
 
+interface PaginationReturn {
+    numberOfPage: (string | number)[],
+    dataBatchPerPage:(string | number)[],
+}
+
 const getNumberOfPage: Function = (data: Array<string | number>, itemPerPage: number): Array<number> => {
     const numberOfPage: number = Math.ceil(data.length / itemPerPage)
     const pageRange: Array<number> = []
@@ -92,7 +97,7 @@ const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number
     }
 }
 
-export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number, sortData: any) => {
+export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number, sortData: any): PaginationReturn => {
     const [numberOfPage, setNumberOfPage] = useState<Array<string | number>>([])
     const [dataBatchPerPage, setDataBatchPerPage] = useState<Array<string | number>>([])
 

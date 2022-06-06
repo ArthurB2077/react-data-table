@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react"
 import DataTableHeaderCell from "../DataTableHeaderCell"
 
+interface HiddenColumns {
+    value: string;
+    index: number;
+} 
+
 interface Props {
     content: Array<string>,
+    hiddenColumns: Array<HiddenColumns>,
     changeSortOrder: Function,
     setSelectedColumnIndex: Function,
     dataOrder: any,
@@ -10,29 +16,30 @@ interface Props {
     theme: "light" | "dark",
 };
 
-const DataTableHeader: React.FC<Props> = (props): JSX.Element => {
-    const [sortedData, setSortedData] = useState<any>(props.dataOrder)
+const DataTableHeader: React.FC<Props> = ({ dataOrder, changeSortOrder, content, setSelectedColumnIndex, selectedColumnIndex, theme, hiddenColumns }): JSX.Element => {
+    const [sortedData, setSortedData] = useState<any>(dataOrder)
 
     useEffect(() => {
-        props.changeSortOrder(sortedData)
+        changeSortOrder(sortedData)
     }, [sortedData])
 
-    return(
+    return (
         <thead className="data-table-header">
             <tr className="data-table-row">
                 {
-                    props.content.map((item, index) => {
-                        return(
-                            <DataTableHeaderCell 
-                                key={`${item}-${index}`} 
-                                indexOfTheCell={index} 
-                                contentOfTheCell={item} 
-                                changeSortOrder={setSortedData} 
-                                setSelectedColumnIndex={props.setSelectedColumnIndex} 
-                                selectedColumnIndex={props.selectedColumnIndex}
-                                theme={props.theme}
-                            />
-                        )
+                    content.map((item, index) => {
+                        if(!hiddenColumns.map(hc => hc.value).includes(item))
+                            return (
+                                <DataTableHeaderCell
+                                    key={`${item}-${index}`}
+                                    indexOfTheCell={index}
+                                    contentOfTheCell={item}
+                                    changeSortOrder={setSortedData}
+                                    setSelectedColumnIndex={setSelectedColumnIndex}
+                                    selectedColumnIndex={selectedColumnIndex}
+                                    theme={theme}
+                                />
+                            )
                     })
                 }
             </tr>

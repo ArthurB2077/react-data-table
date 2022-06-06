@@ -1,6 +1,6 @@
 import React from "react"
 
-interface Props  {
+interface Props {
     indexOfCell: number,
     contentOfCell: string,
     selectedColumnIndex: number,
@@ -8,7 +8,7 @@ interface Props  {
 
 const DataTableBodyCell: React.FC<Props> = ({ indexOfCell, contentOfCell, selectedColumnIndex }): JSX.Element => {
 
-    return(
+    return (
         <>
             {indexOfCell === selectedColumnIndex ?
                 (
