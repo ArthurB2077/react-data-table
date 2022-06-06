@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import DataTable from "./lib/components/DataTable";
+import "./style.css"
 
 const testData = [
     {
