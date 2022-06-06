@@ -55,12 +55,12 @@ const DataTableToolbar: React.FC<Props> = ({ setItemPerPage, setDataFiltered, se
                     <div className="data-table-dropdown" onClick={() => setSelectOpen(!selectOpen)}>
                         <p className="data-table-dropdown-label">Display</p>
                         <span className={`data-table-dropdown-icon`}>
-                            <svg className={`data-table-dropdown-svg${selectOpen ? "__closed" : ""}`} viewBox="0 0 256 256">
+                            <svg className={`data-table-dropdown-svg${selectOpen ? "" : "__closed"}`} viewBox="0 0 256 256">
                                 <polygon points="225.813,48.907 128,146.72 30.187,48.907 0,79.093 128,207.093 256,79.093"/>
                             </svg>
                         </span>
                     </div>
-                    <div className={`data-table-select-check-container${selectOpen ? "__closed" : ""}`}>
+                    <div className={`data-table-select-check-container${selectOpen ? "" : "__closed"}`}>
                     {headers && headers.map((item, index) => {
                             return(
                                 <label htmlFor={item}>
