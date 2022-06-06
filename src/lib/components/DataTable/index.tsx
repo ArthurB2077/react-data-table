@@ -47,12 +47,6 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
         }
     }, [hiddenColumns])
 
-    console.log("props.headers", props.headers)
-    console.log("props.rows", props.rows)
-    console.log("rows + headers", [props.headers, ...props.rows])
-    console.log("rows + headers join ,", [props.headers, ...props.rows].map(arr => arr.join(",")))
-    console.log("rows + headers join , + n", [props.headers, ...props.rows].map(arr => arr.join(",")).join("\n"))
-
     return (
         <div className={`${props.className ? `${props.className} ${props.theme === "dark" ? "data-table" : "data-table__light"}` : `${props.theme === "dark" ? "data-table" : "data-table__light"}`}`}>
             <DataTableToolbar
@@ -88,6 +82,8 @@ const DataTable: React.FC<Props> = (props): JSX.Element => {
                 numberOfPage={numberOfPage}
                 setPage={setCurrentPage}
                 currentPage={currentPage}
+                rows={props.rows}
+                headers={props.headers}
             />
         </div>
     )
