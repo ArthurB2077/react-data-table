@@ -1,5 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from 'react-dom/client';
 import DataTable from "./lib/components/DataTable";
 import "./style.css"
 
@@ -556,7 +555,9 @@ const testData = [
     }
 ]
 
-ReactDOM.render(
+const container = document.getElementById('root')
+const root = createRoot(container!)
+root.render(
     <div style={{width: "80vw", margin: "auto"}}>
         <DataTable 
             headers={Object.keys(testData[0])} 
@@ -574,6 +575,5 @@ ReactDOM.render(
             className=""
             theme="light"
         />
-    </div>,
-    document.getElementById("root")
+    </div>
 )
