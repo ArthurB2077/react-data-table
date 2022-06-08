@@ -35,7 +35,7 @@ const identifyDataType: Function = (data: string): string => {
     }
 }
 
-// Function that re
+// Function that return a sorted array depending on the type of data for a chosen column
 const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number, order: string): Array<Array<string>> => {
     let sortedArray: Array<Array<string>> = arrayToSort
 
@@ -90,6 +90,7 @@ const sort: Function = (arrayToSort: Array<Array<string>>, filterByIndex: number
     }
 }
 
+// Hook that return an array including all the pages for the paginatio an the items for the current page and the item per page
 export const usePagination: Function = (data: Array<string | number>, page: number, itemPerPage: number, sortData: any): PaginationReturn => {
     const [numberOfPage, setNumberOfPage] = useState<Array<string>>([])
     const [dataBatchPerPage, setDataBatchPerPage] = useState<Array<string>>([])
