@@ -16,13 +16,13 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
 
     useEffect(() => {
         changeSortOrder(sortParameter)
-    }, [sortParameter])
+    }, [sortParameter, changeSortOrder])
 
     return (
         <thead className="data-table-header">
             <tr className="data-table-row">
                 {content.map((item, index) => {
-                    if(!hiddenColumns.map(hc => hc.value).includes(item))
+                    if(!hiddenColumns.map(hc => hc.value).includes(item)) {
                         return (
                             <DataTableHeaderCell
                                 key={`${item}-${index}`}
@@ -34,8 +34,10 @@ const DataTableHeader: React.FC<DataTableHeaderProps> = ({
                                 theme={theme}
                             />
                         )
-                    })
-                }
+                    } else {
+                        return null
+                    }
+                })}
             </tr>
         </thead>
     )

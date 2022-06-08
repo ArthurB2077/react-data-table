@@ -24,7 +24,7 @@ const DataTableFooter: React.FC<DataTableFooterProps> = ({
         const joinComma = joinAllColumns.map(arr => arr.join(";"))
         const joinCommaWithBackspace = joinComma.join("\n")
 
-        if (window.Blob == undefined || window.URL == undefined || window.URL.createObjectURL == undefined) {
+        if (window.Blob === undefined || window.URL === undefined || window.URL.createObjectURL === undefined) {
             alert("Your browser doesn't support Blobs")
             return
         }
@@ -46,9 +46,8 @@ const DataTableFooter: React.FC<DataTableFooterProps> = ({
             return rowObject
         })
         const json = JSON.stringify(data)
-        console.log(json)
 
-        if (window.Blob == undefined || window.URL == undefined || window.URL.createObjectURL == undefined) {
+        if (window.Blob === undefined || window.URL === undefined || window.URL.createObjectURL === undefined) {
             alert("Your browser doesn't support Blobs")
             return
         }
@@ -64,7 +63,11 @@ const DataTableFooter: React.FC<DataTableFooterProps> = ({
     return (
         <div className="data-table-footer">
             <div className="data-table-footer-pagination">
-                <button disabled={currentPage === numberOfPage[0]} className={`${currentPage === numberOfPage[0] ? "selected-button" : ""}`} onClick={() => setPage(numberOfPage[0])}>
+                <button 
+                    disabled={currentPage === numberOfPage[0]} 
+                    className={`${currentPage === numberOfPage[0] ? "selected-button" : ""}`} 
+                    onClick={() => setPage(numberOfPage[0])}
+                >
                     {firstLabel}
                 </button>
                 <button
@@ -94,17 +97,21 @@ const DataTableFooter: React.FC<DataTableFooterProps> = ({
                 >
                     {nextLabel}
                 </button>
-                <button disabled={currentPage === numberOfPage[numberOfPage.length - 1]} className={`${currentPage === numberOfPage[numberOfPage.length - 1] ? "selected-button" : ""}`} onClick={() => setPage(numberOfPage[numberOfPage.length - 1])}>
+                <button 
+                    disabled={currentPage === numberOfPage[numberOfPage.length - 1]} 
+                    className={`${currentPage === numberOfPage[numberOfPage.length - 1] ? "selected-button" : ""}`} 
+                    onClick={() => setPage(numberOfPage[numberOfPage.length - 1])}
+                >
                     {lastLabel}
                 </button>
             </div>
             <div className="data-table-footer-export">
                 <p>{exportLabel}</p>
-                <a ref={hiddenCSVDowloadLinkRef} href="" style={{ display: "none" }}></a>
+                <a ref={hiddenCSVDowloadLinkRef} href="." style={{ display: "none" }}>Download CSV</a>
                 <span onClick={() => downloadToCSV(headers, rows)}>
                     {renderCsvSVG("")}
                 </span>
-                <a ref={hiddenJSONDowloadLinkRef1} href="" style={{ display: "none" }}></a>
+                <a ref={hiddenJSONDowloadLinkRef1} href="." style={{ display: "none" }}>Download JSON</a>
                 <span onClick={() => downloadToJSON(headers, rows)}>
                    {renderJsonSVG("")}
                 </span>

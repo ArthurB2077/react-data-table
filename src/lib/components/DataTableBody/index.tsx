@@ -23,6 +23,8 @@ const DataTableBody: React.FC<DataTableBodyProps> = ({
                                             selectedColumnIndex={selectedColumnIndex} 
                                         />
                                     )
+                                } else {
+                                    return null
                                 }
                             })}
                         </tr>
