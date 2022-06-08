@@ -1,13 +1,11 @@
 import React from "react"
+import { DataTableBodyCellProps } from "../../types"
 
-interface Props {
-    indexOfCell: number,
-    contentOfCell: string,
-    selectedColumnIndex: number,
-}
-
-const DataTableBodyCell: React.FC<Props> = ({ indexOfCell, contentOfCell, selectedColumnIndex }): JSX.Element => {
-
+const DataTableBodyCell: React.FC<DataTableBodyCellProps> = ({
+    indexOfCell,
+    contentOfCell,
+    selectedColumnIndex
+}): JSX.Element => {
     return (
         <>
             {indexOfCell === selectedColumnIndex ?

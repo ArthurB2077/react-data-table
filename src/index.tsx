@@ -563,7 +563,15 @@ root.render(
             headers={Object.keys(testData[0])} 
             rows={testData.map(item => Object.values(item))}
             itemPerPageRanges={[5, 10, 20, 50, 100]}
-            searchLabel="Search : "
+            labels={{
+                search: "Search : ",
+                display: "Display : ",
+                export: "Export to :",
+                first: "First",
+                previous: "Prev",
+                next: "Next",
+                last: "Last",
+            }}
             className=""
             theme="dark"
         />
@@ -571,7 +579,15 @@ root.render(
             headers={Object.keys(testData[0])} 
             rows={testData.map(item => Object.values(item))}
             itemPerPageRanges={[5, 10, 20, 50, 100]}
-            searchLabel="Search : "
+            labels={{
+                search: "Search : ",
+                display: "Display : ",
+                export: "Export to :",
+                first: "First",
+                previous: "Prev",
+                next: "Next",
+                last: "Last",
+            }}
             className=""
             theme="light"
         />

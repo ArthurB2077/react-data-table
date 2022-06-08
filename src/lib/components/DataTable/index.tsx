@@ -4,14 +4,21 @@ import DataTableToolbar from "../DataTableToolbar"
 import DataTableHeader from "../DataTableHeader"
 import DataTableBody from "../DataTableBody"
 import DataTableFooter from "../DataTableFooter"
-import "../../assets/style/data-table.scss"
 import { DataTableProps, SortData, HiddenColumns } from "../../types"
+import "../../assets/style/data-table.scss"
 
-const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
+const DataTable: React.FC<DataTableProps> = ({
+    itemPerPageRanges,
+    rows,
+    headers,
+    className,
+    theme,
+    labels
+}): JSX.Element => {
     const [currentPage, setCurrentPage] = useState<number>(1)
-    const [currentItemPerPage, setcurrentItemPerPage] = useState<number>(props.itemPerPageRanges[0])
+    const [currentItemPerPage, setcurrentItemPerPage] = useState<number>(itemPerPageRanges[0])
     // State used to store the current filtered by search data
-    const [dataFiltered, setDataFiltered] = useState<Array<Array<string>>>(props.rows)
+    const [dataFiltered, setDataFiltered] = useState<Array<Array<string>>>(rows)
     // State used to store the current sort data
     const [dataSorted, setDataSorted] = useState<SortData>({ index: 0, order: "asc" })
     const [selectedColumnIndex, setSelectedColumnIndex] = useState<number>(0)
@@ -25,32 +32,33 @@ const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
         // Check if the current selected columns need to be hidden and if so selected the next available column
         if(hiddenColumns.map(hc => hc.index).includes(selectedColumnIndex)) {
             // First columns in headers that are not hidden
-            const nearestDisplayedItem: string | undefined = props.headers.find(item => !hiddenColumns.map(hc => hc.value).includes(item))
+            const nearestDisplayedItem: string | undefined = headers.find(item => !hiddenColumns.map(hc => hc.value).includes(item))
             let nearestDisplayedIndex: number | null = null
             // Check if their is a column that is not hidden at all
             if(nearestDisplayedItem !== undefined){
                 // Find the index of the nearest displayed column
-                nearestDisplayedIndex = props.headers.indexOf(nearestDisplayedItem)
+                nearestDisplayedIndex = headers.indexOf(nearestDisplayedItem)
                 setSelectedColumnIndex(nearestDisplayedIndex)
             }
         }
-    }, [hiddenColumns, props.headers, selectedColumnIndex])
+    }, [hiddenColumns, headers, selectedColumnIndex])
 
     return (
         <div 
             className={
-                `${props.className ? 
-                    `${props.className} ${props.theme === "dark" ? "data-table" : "data-table__light"}`
+                `${className ? 
+                    `${className} ${theme === "dark" ? "data-table" : "data-table__light"}`
                     : 
-                    `${props.theme === "dark" ? "data-table" : "data-table__light"}`
+                    `${theme === "dark" ? "data-table" : "data-table__light"}`
                 }`
             }
         >
             <DataTableToolbar
-                headers={props.headers}
-                data={props.rows}
-                searchLabel={props.searchLabel}
-                itemPerPageRanges={props.itemPerPageRanges}
+                headers={headers}
+                data={rows}
+                searchLabel={labels.search}
+                displayLabel={labels.display}
+                itemPerPageRanges={itemPerPageRanges}
                 indexToSearch={dataSorted.index}
                 setItemPerPage={setcurrentItemPerPage}
                 setPage={setCurrentPage}
@@ -60,8 +68,8 @@ const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
             <div className="data-table-container">
                 <table>
                     <DataTableHeader
-                        content={props.headers}
-                        theme={props.theme}
+                        content={headers}
+                        theme={theme}
                         dataOrder={dataSorted}
                         selectedColumnIndex={selectedColumnIndex}
                         hiddenColumns={hiddenColumns}
@@ -76,11 +84,16 @@ const DataTable: React.FC<DataTableProps> = (props): JSX.Element => {
                 </table>
             </div>
             <DataTableFooter
-                headers={props.headers}
-                rows={props.rows}
+                headers={headers}
+                rows={rows}
                 numberOfPage={numberOfPage}
                 setPage={setCurrentPage}
                 currentPage={currentPage}
+                firstLabel={labels.first}
+                previousLabel={labels.previous}
+                nextLabel={labels.next}
+                lastLabel={labels.last}
+                exportLabel={labels.export}
             />
         </div>
     )

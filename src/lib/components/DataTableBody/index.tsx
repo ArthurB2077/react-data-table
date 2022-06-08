@@ -1,39 +1,36 @@
 import React from "react"
 import DataTableBodyCell from "../DataTableBodyCell"
+import { DataTableBodyProps } from "../../types"
 
-interface Props {
-    content: Array<Array<string>>,
-    selectedColumnIndex: number,
-    hiddenColumns: Array<HiddenColumns>
-};
-
-interface HiddenColumns {
-    value: string;
-    index: number;
-} 
-
-const DataTableBody: React.FC<Props> = (props): JSX.Element => {
-
+const DataTableBody: React.FC<DataTableBodyProps> = ({
+    content,
+    hiddenColumns,
+    selectedColumnIndex,
+}): JSX.Element => {
     return (
         <tbody className="data-table-body">
             {
-                props.content.map((item, index) => {
+                content.map((item, index) => {
                     return (
                         <tr key={`row-${index}`} className="data-table-row">
-                            {
-                                item.map((itemChild, indexChild) => {
-                                    if(!props.hiddenColumns.map(hc => hc.index).includes(indexChild))
-                                        return (
-                                            <DataTableBodyCell key={`cell-${indexChild}`} contentOfCell={itemChild} indexOfCell={indexChild} selectedColumnIndex={props.selectedColumnIndex} />
-                                        )
-                                })
-                            }
+                            {item.map((itemChild, indexChild) => {
+                                if(!hiddenColumns.map(hc => hc.index).includes(indexChild)) {
+                                    return (
+                                        <DataTableBodyCell 
+                                            key={`cell-${indexChild}`} 
+                                            contentOfCell={itemChild} 
+                                            indexOfCell={indexChild} 
+                                            selectedColumnIndex={selectedColumnIndex} 
+                                        />
+                                    )
+                                }
+                            })}
                         </tr>
                     )
                 })
             }
         </tbody>
-    );
-};
+    )
+}
 
-export default DataTableBody;
+export default DataTableBody
