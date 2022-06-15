@@ -1,6 +1,16 @@
 import React from "react"
 import { DataTableBodyCell } from "../DataTableBodyCell"
-import { DataTableBodyProps } from "../../types"
+
+interface HiddenColumns {
+    value: string;
+    index: number;
+}
+
+interface DataTableBodyProps {
+    content: Array<Array<string>>,
+    selectedColumnIndex: number,
+    hiddenColumns: Array<HiddenColumns>
+}
 
 export const DataTableBody: React.FC<DataTableBodyProps> = ({
     content,

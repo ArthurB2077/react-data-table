@@ -1,6 +1,14 @@
 import React, { useState } from "react"
-import { DataTableHeaderCellProps } from "../../types"
 import { renderActiveSortSVG, renderInactiveSortSVG } from "../../assets/svgRender"
+
+interface DataTableHeaderCellProps {
+    indexOfTheCell: number,
+    contentOfTheCell: string,
+    changeSortOrder: Function,
+    setSelectedColumnIndex: Function,
+    selectedColumnIndex: number,
+    theme: "light" | "dark",
+}
 
 export const DataTableHeaderCell: React.FC<DataTableHeaderCellProps> = ({
     indexOfTheCell,

@@ -1,6 +1,26 @@
 import React, { useEffect, useState } from "react"
 import { DataTableHeaderCell } from "../DataTableHeaderCell"
-import { DataTableHeaderProps, SortData } from "../../types"
+
+interface SortData {
+    index: number,
+    order: "asc" | "desc"
+}
+
+interface HiddenColumns {
+    value: string;
+    index: number;
+}
+
+interface DataTableHeaderProps {
+    content: Array<string>,
+    hiddenColumns: Array<HiddenColumns>,
+    changeSortOrder: Function,
+    setSelectedColumnIndex: Function,
+    dataOrder: any,
+    selectedColumnIndex: number,
+    theme: "light" | "dark",
+}
+
 
 export const DataTableHeader: React.FC<DataTableHeaderProps> = ({
     dataOrder,

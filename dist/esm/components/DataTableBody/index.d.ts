@@ -1,3 +1,12 @@
 import React from "react";
-import { DataTableBodyProps } from "../../types";
+interface HiddenColumns {
+    value: string;
+    index: number;
+}
+interface DataTableBodyProps {
+    content: Array<Array<string>>;
+    selectedColumnIndex: number;
+    hiddenColumns: Array<HiddenColumns>;
+}
 export declare const DataTableBody: React.FC<DataTableBodyProps>;
+export {};

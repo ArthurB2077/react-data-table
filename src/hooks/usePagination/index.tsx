@@ -1,6 +1,10 @@
 
 import { useState, useEffect } from "react"
-import { PaginationReturn } from "../../types"
+
+interface PaginationReturn {
+    numberOfPage: Array<string>,
+    dataBatchPerPage: Array<string>,
+}
 
 // Function that return an array including all the pages for the pagination
 const getNumberOfPage: Function = (data: Array<string | number>, itemPerPage: number): Array<number> => {

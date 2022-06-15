@@ -1,3 +1,8 @@
 import React from "react";
-import { DataTableBodyCellProps } from "../../types";
+interface DataTableBodyCellProps {
+    indexOfCell: number;
+    contentOfCell: string;
+    selectedColumnIndex: number;
+}
 export declare const DataTableBodyCell: React.FC<DataTableBodyCellProps>;
+export {};

@@ -1,3 +1,11 @@
 import React from "react";
-import { DataTableHeaderCellProps } from "../../types";
+interface DataTableHeaderCellProps {
+    indexOfTheCell: number;
+    contentOfTheCell: string;
+    changeSortOrder: Function;
+    setSelectedColumnIndex: Function;
+    selectedColumnIndex: number;
+    theme: "light" | "dark";
+}
 export declare const DataTableHeaderCell: React.FC<DataTableHeaderCellProps>;
+export {};

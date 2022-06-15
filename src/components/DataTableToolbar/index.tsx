@@ -1,6 +1,18 @@
 import React, { useState } from "react"
 import { renderDownChevronSVG } from "../../assets/svgRender"
-import { DataTableToolbarProps } from "../../types"
+
+interface DataTableToolbarProps {
+    setItemPerPage: Function,
+    setDataFiltered: Function,
+    setPage: Function,
+    handleHiddenColumns: Function,
+    data: Array<Array<string>>,
+    headers: Array<string>,
+    indexToSearch: number,
+    itemPerPageRanges: Array<number>,
+    searchLabel: string,
+    displayLabel: string,
+}
 
 export const DataTableToolbar: React.FC<DataTableToolbarProps> = ({
     setItemPerPage,

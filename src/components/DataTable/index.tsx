@@ -5,8 +5,34 @@ import { DataTableToolbar } from "../DataTableToolbar"
 import { DataTableHeader } from "../DataTableHeader"
 import { DataTableBody } from "../DataTableBody"
 import { DataTableFooter } from "../DataTableFooter"
-import { DataTableProps, SortData, HiddenColumns } from "../../types"
 import "../../assets/style/data-table.css"
+
+interface DataTableProps {
+    headers: Array<string>,
+    rows: Array<Array<string>>,
+    itemPerPageRanges: Array<number>,
+    labels: {
+        search: string,
+        display: string,
+        export: string,
+        first: string,
+        previous: string,
+        next: string,
+        last: string,
+    },
+    className?: string,
+    theme: "light" | "dark",
+}
+
+interface SortData {
+    index: number,
+    order: "asc" | "desc"
+}
+
+interface HiddenColumns {
+    value: string;
+    index: number;
+}
 
 export const DataTable: React.FC<DataTableProps> = ({
     itemPerPageRanges,
