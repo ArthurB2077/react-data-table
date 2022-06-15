@@ -50,9 +50,10 @@ yarn add react-delta-table
 &nbsp;
 
 
-![Dark table component](https://drive.google.com/file/d/1sJhCCdCzXDZmN6ej9alFhglUgoQ1Ssay/view?usp=sharing "Dark table component")
+[![Dark table component](https://drive.google.com/file/d/1sJhCCdCzXDZmN6ej9alFhglUgoQ1Ssay/view?usp=sharing)](https://drive.google.com/file/d/1sJhCCdCzXDZmN6ej9alFhglUgoQ1Ssay/view?usp=sharing)
 
-![Light table component](https://drive.google.com/file/d/1sJhCCdCzXDZmN6ej9alFhglUgoQ1Ssay/view?usp=sharing "Light table component")
+[![Light table component](https://drive.google.com/file/d/107QIW6dVKrrcY2dz5awjQwOw6QfF7kfm/view?usp=sharing)](https://drive.google.com/file/d/107QIW6dVKrrcY2dz5awjQwOw6QfF7kfm/view?usp=sharing)
+
 
 &nbsp;
 ## :rocket: How to use
