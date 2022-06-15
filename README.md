@@ -6,8 +6,10 @@
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
-
+&nbsp;
 ## :checkered_flag: Requirements
+&nbsp;
+
 React Data Table Component requires the following be installed in your project:
 
 - React 16.8.0+
@@ -17,7 +19,9 @@ If you're using Typescript:
 
 - Typescript 4.7.3
 
+&nbsp;
 ## :package: Installation
+&nbsp;
 
 ### npm
 
@@ -31,13 +35,38 @@ npm install react-delta-table
 yarn add react-delta-table
 ```
 
-## :rocket: How to use
+&nbsp;
+## :chart_with_upwards_trend: Features
+&nbsp;
 
-### Import
+- Pagination
+- Search
+- Display/hide columns
+- Responsive
+- Export to CSV/JSON
+
+&nbsp;
+## :camera: Check these link for a preview image
+&nbsp;
+
+
+![Dark table component](https://drive.google.com/file/d/1sJhCCdCzXDZmN6ej9alFhglUgoQ1Ssay/view?usp=sharing "Dark table component")
+
+![Light table component](https://drive.google.com/file/d/1sJhCCdCzXDZmN6ej9alFhglUgoQ1Ssay/view?usp=sharing "Light table component")
+
+&nbsp;
+## :rocket: How to use
+&nbsp;
+
+### I. Import
+&nbsp;
 
 Import the DataTable from "react-delta-table". By default the table will set it width to 100%. Use a container if you want the table to use only a certain width.
+&nbsp;
 
 **Example** :
+&nbsp;
+
 
 ```swift
 import { createRoot } from 'react-dom/client';
@@ -102,19 +131,29 @@ root.render(
     </div>
 )
 ```
-### Props
+&nbsp;
+
+### II. Props
+&nbsp;
+
 
 **headers**: <span style="color:lime">Array[string]</span> <span style="color:red">required</span>
 
 An array of strings that includes all your headers. The order in your array will be the order oof your headers
 
+&nbsp;
+
 **rows**: <span style="color:lime">Array[Array[string]]</span> <span style="color:red">required</span>
 
 An array of arrays of strings. Each array in this array will be a row in your table. In each of this array (row) there will be a cell value
 
+&nbsp;
+
 **itemPerPageRanges**: <span style="color:lime">Array[number]</span>  <span style="color:red">required</span>
 
 Each number will be a possible number of items per page that you will can select in the item per page select component of the table
+
+&nbsp;
 
 **labels**: <span style="color:lime">Object {
                 search: string,
@@ -128,9 +167,13 @@ Each number will be a possible number of items per page that you will can select
 
 Object that contains all the value for the text labels of the table. Replace the string value with what you want instead
 
+&nbsp;
+
 **className** <span style="color:lime">string</span> 
 
 A className attribut that will be include in first position of the higher component of the table HTML tree. Check the inspector for the html of the component for more details.
+
+&nbsp;
 
 **theme**: <span style="color:lime">"dark" | "light"</span>  <span style="color:red">required</span>
 

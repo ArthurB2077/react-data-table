@@ -1,6 +1,6 @@
 {
   "name": "react-delta-table",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A react data table component including pagination, search, export to json and csv and more...",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -20,6 +20,17 @@
   },
   "author": "Arthur Béquié",
   "license": "MIT",
+  "keywords": [
+    "react",
+    "data",
+    "table",
+    "react-table",
+    "pagination",
+    "search",
+    "export",
+    "csv export",
+    "json export"
+  ],
   "devDependencies": {
     "@types/node": "^17.0.41",
     "@types/react": "^18.0.12",
