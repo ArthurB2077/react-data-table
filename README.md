@@ -33,55 +33,105 @@ yarn add react-delta-table
 
 ## :rocket: How to use
 
+### Import
 
+Import the DataTable from "react-delta-table". By default the table will set it width to 100%. Use a container if you want the table to use only a certain width.
 
-```swift
-import AdvancedList
-
-@State private var listState: ListState = .items
-
-AdvancedList(yourData, content: { item in
-    Text("Item")
-}, listState: listState, emptyStateView: {
-    Text("No data")
-}, errorStateView: { error in
-    Text(error.localizedDescription)
-        .lineLimit(nil)
-}, loadingStateView: {
-    Text("Loading ...")
-})
-```
-
-### 📄 Pagination
-
-The `Pagination` functionality is now (>= `5.0.0`) implemented as a `modifier`.
-
-**The view created by the `content` `ViewBuilder` of your pagination configuration object will only be visible below the List if the last item of the List appeared! That way the user is only interrupted if needed.**
-
-**Example:**
+**Example** :
 
 ```swift
-@State private var paginationState: AdvancedListPaginationState = .idle
+import { createRoot } from 'react-dom/client';
+import { DataTable } from 'react-delta-table';
 
-AdvancedList(...)
-.pagination(.init(type: .lastItem, shouldLoadNextPage: {
-    paginationState = .loading
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        items.append(contentsOf: moreItems)
-        paginationState = .idle
-    }
-}) {
-    switch paginationState {
-    case .idle:
-        EmptyView()
-    case .loading:
-        if #available(iOS 14, *) {
-            ProgressView()
-        } else {
-            Text("Loading ...")
-        }
-    case let .error(error):
-        Text(error.localizedDescription)
-    }
-})
+const container = document.getElementById('root')
+const root = createRoot(container)
+root.render(
+    <div style={{width: "80vw", margin: "auto"}}>
+        <DataTable 
+            headers={['First Name', 'Last Name', 'Birth', 'Start Date', 'Department', 'Street', 'City', 'State', 'Zip Code']} 
+            rows={
+                [
+                    [
+                        "Bruce",
+                        "Wayne",
+                        "06/17/1983",
+                        "05/04/2022",
+                        "Engineering",
+                        "Blackgate",
+                        "Gotham",
+                        "NY",
+                        "89000"
+                    ],
+                    [
+                        "Clark ",
+                        "Kent",
+                        "01/08/1981",
+                        "02/09/2022",
+                        "Legal",
+                        "General Ford",
+                        "Metropolis",
+                        "TX",
+                        "7000"
+                    ],
+                    [
+                        "Diana",
+                        "Prince",
+                        "05/14/1901",
+                        "05/14/2022",
+                        "Sales",
+                        "Venici Beach",
+                        "Miami",
+                        "CA",
+                        "28924"
+                    ]
+                ]
+            }
+            itemPerPageRanges={[5, 10, 20, 50, 100]}
+            labels={{
+                search: "Search : ",
+                display: "Display : ",
+                export: "Export to :",
+                first: "First",
+                previous: "Prev",
+                next: "Next",
+                last: "Last",
+            }}
+            className=""
+            theme="dark"
+        />
+    </div>
+)
 ```
+### Props
+
+**headers**: <span style="color:lime">Array[string]</span> <span style="color:red">required</span>
+
+An array of strings that includes all your headers. The order in your array will be the order oof your headers
+
+**rows**: <span style="color:lime">Array[Array[string]]</span> <span style="color:red">required</span>
+
+An array of arrays of strings. Each array in this array will be a row in your table. In each of this array (row) there will be a cell value
+
+**itemPerPageRanges**: <span style="color:lime">Array[number]</span>  <span style="color:red">required</span>
+
+Each number will be a possible number of items per page that you will can select in the item per page select component of the table
+
+**labels**: <span style="color:lime">Object {
+                search: string,
+                display: string,
+                export: string,
+                first: string,
+                previous: string,
+                next: string,
+                last: string
+            }</span> <span style="color:red">required</span>
+
+Object that contains all the value for the text labels of the table. Replace the string value with what you want instead
+
+**className** <span style="color:lime">string</span> 
+
+A className attribut that will be include in first position of the higher component of the table HTML tree. Check the inspector for the html of the component for more details.
+
+**theme**: <span style="color:lime">"dark" | "light"</span>  <span style="color:red">required</span>
+
+Two default dark/light style for the table component
