@@ -1,12 +1,13 @@
 {
   "name": "react-delta-table",
-  "version": "1.1.4",
+  "version": "1.1.11",
   "description": "A react data table component including pagination, search, export to json and csv and more...",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib-esm/index.js",
   "files": [
-    "dist",
+    "_bundles",
+    "lib",
+    "lib-esm",
     "README.md"
   ],
   "repository": {
@@ -14,9 +15,11 @@
     "url": "https://github.com/ArthurB2077/react-delta-table.git"
   },
   "scripts": {
-    "build": "rm -rf dist/ && node-sass src/assets/style/ -o dist/cjs/assets/style && node-sass src/assets/style/ -o dist/esm/assets/style && npm run build:esm && npm run build:cjs",
+    "build:style": "node-sass src/assets/style/ -o lib/assets/style && node-sass src/assets/style/ -o lib-esm/assets/style",
+    "build:clean": "shx rm -rf _bundles lib lib-esm",
     "build:esm": "tsc",
-    "build:cjs": "tsc --module CommonJS --outDir dist/cjs"
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "build": "npm run build:clean && tsc && tsc -m es6 --outDir lib-esm && npm run build:style && webpack"
   },
   "author": "Arthur Béquié",
   "license": "MIT",
@@ -35,11 +38,17 @@
     "@types/node": "^17.0.41",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
+    "css-loader": "^6.7.1",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "sass": "^1.52.3",
-    "typescript": "^4.7.3"
+    "shx": "^0.3.4",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {
     "react": "^18.1.0",

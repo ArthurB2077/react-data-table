@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-      "allowSyntheticDefaultImports": true,
-      "declaration": true,
-      "esModuleInterop": true,
-      "jsx": "react",
-      "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
-      "types": ["node"],
-      "module": "es2015",
-      "moduleResolution": "node",
-      "noImplicitAny": true,
-      "noUnusedLocals": true,
-      "outDir": "dist/esm",
-      "sourceMap": true,
-      "strict": true,
-      "target": "es6"
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es5",
+    "lib": [ "es2015", "dom" ],
+    "outDir": "lib",
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
+    "declaration": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.scss"]
+  "files": [
+    "./src/index.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false
 }
